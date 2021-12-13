@@ -121,7 +121,7 @@ function responseReceivedHandler() {
       backgroundColor: CHART_COLORS_50_Percent[CHART_COLORS_array[firstTime]],
       hidden: true
     }
-    console.log("done");
+    console.log("Success");
     console.log(this.response.Results);
     let seriesID= this.response.Results.series[0].seriesID;
     sectorLine.label = supersector[seriesID.substring(3,5)];
@@ -151,6 +151,6 @@ xhr.addEventListener("load", responseReceivedHandler);
 let requestStart = "https://api.bls.gov/publicAPI/v2/timeseries/data/CEU";
 let requestEnd = "00000001"+api_key;
 xhr.open("GET", requestStart + sector + requestEnd);
-console.log (requestStart + sector + requestEnd);
+console.log(requestStart + sector + requestEnd);
 xhr.send();
 }
