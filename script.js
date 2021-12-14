@@ -26,9 +26,11 @@ let supersector = {
 "80":	"Other Services",
 "90":	"Government"
 }
+
 let firstTime = 0;
     const labels =[];
 
+//all colors full
 
     const CHART_COLORS = {
       red: 'rgb(255, 99, 132)',
@@ -55,6 +57,8 @@ let firstTime = 0;
       blue2: 'rgb(0, 14, 106)'
     };
     
+//all colors half
+
 let CHART_COLORS_array= Object.keys(CHART_COLORS);
     const CHART_COLORS_50_Percent = {
       red: 'rgba(255, 99, 132, 0.5)',
@@ -81,7 +85,6 @@ let CHART_COLORS_array= Object.keys(CHART_COLORS);
       blue2: 'rgba(0,14,106,0.5)'
     };
 
-
     const data = {
       labels: labels,
       datasets: []
@@ -103,6 +106,7 @@ let CHART_COLORS_array= Object.keys(CHART_COLORS);
         }
       }
     };
+
 function drawChart(){
 
     const myChart = new Chart(
@@ -112,6 +116,7 @@ function drawChart(){
 
     }
 function responseReceivedHandler() {
+    
   if (this.status == 200) {
     console.log(this.response);
     let sectorLine = {
@@ -121,7 +126,8 @@ function responseReceivedHandler() {
       backgroundColor: CHART_COLORS_50_Percent[CHART_COLORS_array[firstTime]],
       hidden: true
     }
-    console.log("Success");
+    
+    console.log("test");
     console.log(this.response.Results);
     let seriesID= this.response.Results.series[0].seriesID;
     sectorLine.label = supersector[seriesID.substring(3,5)];
@@ -140,16 +146,19 @@ function responseReceivedHandler() {
 
 console.log(this.response);
   } else {
-console.log ("error");
+console.log ("Error");
   }
 }
 
 for (let sector in supersector) {
 let xhr = new XMLHttpRequest();
+    
 xhr.responseType = "json";
 xhr.addEventListener("load", responseReceivedHandler);
+    
 let requestStart = "https://api.bls.gov/publicAPI/v2/timeseries/data/CEU";
 let requestEnd = "00000001"+api_key;
+    //api key insert here ^
 xhr.open("GET", requestStart + sector + requestEnd);
 console.log(requestStart + sector + requestEnd);
 xhr.send();
