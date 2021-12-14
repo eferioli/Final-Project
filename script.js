@@ -1,5 +1,5 @@
 let api_key = "";
-let api_key = "?registrationkey=ed96f2d0869845e29ff6ad0aee450400";
+//let api_key = "?registrationkey=#";
 //When you have obtained your API key, replace the # above with you api key and uncomment the line.
 
 let supersector = {
